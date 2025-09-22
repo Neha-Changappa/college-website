@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sri Siddivinayaka College of Nursing (SSV College of Nursing)</title>
+  <meta name="description" content="Sri Siddhivinayaka College of Nursing — admissions, courses, events, faculty, gallery, and contact."/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* -------------------------
+       DESIGN TOKENS / VARIABLES
+       ------------------------- */
+    :root{
+      --bg:#071028;
+      --card:#0f1a2b;
+      --muted:#9fb2cf;
+      --text:#eaf4ff;
+      --brand:#4fa7ff;
+      --accent:#22d3ee;
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --shadow: 0 18px 60px rgba(2,8,23,0.6);
+      --radius: 14px;
+      --success:#22c55e;
+      --warning:#f59e0b;
+      --danger:#ef4444;
+      --focus: rgba(79,167,255,0.2);
+      --container: min(1200px,94%);
+    }
+
+    /* -------------------------
+       BASE
+       ------------------------- */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:
+        radial-gradient(900px 400px at 75% -10%, rgba(34,211,238,.05), transparent),
+        radial-gradient(900px 400px at -10% 10%, rgba(79,167,255,.04), transparent),
+        var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    a{color:inherit}
+    img{max-width:100%;display:block}
+    .container{width:var(--container);margin:0 auto;padding:0 6px}
+
+    /* -------------------------
+       NAVBAR
+       ------------------------- */
+    .nav{
+      position:sticky;top:0;z-index:60;
+      background: linear-gradient(180deg, rgba(2,6,23,0.55), rgba(2,6,23,0.4));
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid rgba(255,255,255,0.03);
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:48px;height:48px;border-radius:10px;
+      background: linear-gradient(135deg,var(--brand),var(--accent));
+      display:grid;place-items:center;font-weight:800;color:#041226;
+      box-shadow: 0 10px 30px rgba(34,211,238,0.08);
+    }
+    .brand h1{font-size:1rem;margin:0}
+    .brand small{display:block;color:var(--muted);font-size:.75rem}
+    .menu{display:flex;gap:10px;align-items:center}
+    .menu a{padding:8px 12px;border-radius:999px;font-weight:600;opacity:.95}
+    .menu a.active, .menu a:hover{background: rgba(79,167,255,0.08)}
+    .controls{display:flex;gap:8px;align-items:center}
+
+    /* -------------------------
+       HERO
+       ------------------------- */
+    .hero{padding:64px 0 40px}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center}
+    .hero-left h2{font-size:clamp(1.6rem,4vw,2.6rem);margin:0 0 12px}
+    .hero-left p.lead{color:var(--muted);font-size:1.02rem;margin:0 0 16px}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+    .kpi{background:var(--glass);padding:12px;border-radius:10px;text-align:center}
+    .kpi small{color:var(--muted);display:block;font-size:.88rem}
+
+    .hero-card{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,0.04);background:linear-gradient(180deg,var(--glass),transparent)}
+    .hero-card img{height:320px;object-fit:cover;width:100%}
+    .hero-card .content{padding:14px}
+
+    /* -------------------------
+       SECTIONS
+       ------------------------- */
+    section{padding:64px 0}
+    section h3{margin-top:0}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .card{background:linear-gradient(180deg,var(--glass),var(--glass-2));border:1px solid rgba(255,255,255,0.04);border-radius:12px;padding:14px;box-shadow:0 8px 30px rgba(2,8,23,0.45)}
+    .muted{color:var(--muted)}
+    .chip{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.15);font-weight:600;color:var(--text)}
+    .stack{display:flex;flex-direction:column;gap:10px}
+
+    /* -------------------------
+       FORMS
+       ------------------------- */
+    .input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(2,8,23,0.35);color:var(--text)}
+    .input:focus{outline:3px solid var(--focus)}
+    .row-2{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    form .btn{display:inline-block}
+
+    /* -------------------------
+       TABLES
+       ------------------------- */
+    table{width:100%;border-collapse:collapse;background:transparent}
+    th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:left}
+    thead th{background:rgba(255,255,255,0.02);font-weight:700}
+
+    /* -------------------------
+       FOOTER / UTILS
+       ------------------------- */
+    footer{padding:28px 0;border-top:1px solid rgba(255,255,255,0.03);margin-top:30px}
+    .center{text-align:center}
+    .muted-sm{color:var(--muted);font-size:.9rem}
+    .small{font-size:.88rem}
+    .right{display:flex;gap:8px;align-items:center}
+
+    /* -------------------------
+       MODALS / OVERLAYS
+       ------------------------- */
+    .overlay{position:fixed;inset:0;display:none;place-items:center;background:rgba(2,8,23,0.6);z-index:150}
+    .overlay.show{display:grid}
+    .modal{width:min(760px,96%);max-width:1000px;background:linear-gradient(180deg,#0c1724,#071022);border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 30px 80px rgba(2,8,23,0.6)}
+    .modal-sm{width:min(520px,92%)}
+
+    /* -------------------------
+       RESPONSIVE
+       ------------------------- */
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid-4{grid-template-columns:repeat(2,1fr)}
+      .grid-3{grid-template-columns:1fr}
+      .kpis{grid-template-columns:repeat(2,1fr)}
+      .menu{display:none}
+    }
+    @media (max-width:560px){
+      .row-2{grid-template-columns:1fr}
+    }
+
+    /* -------------------------
+       Micro animation
+       ------------------------- */
+    .fade-in{opacity:0;transform:translateY(8px);animation:fadeIn .6s forwards}
+    @keyframes fadeIn{to{opacity:1;transform:none}}
+    .btn{padding:10px 14px;border-radius:10px;border:none;background:linear-gradient(135deg,var(--brand),var(--accent));color:#042034;font-weight:700;cursor:pointer}
+    .btn.ghost{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1px rgba(255,255,255,0.06)}
+    .btn.small{padding:8px 10px;border-radius:8px;font-weight:600}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-weight:600}
+    .avatar{width:56px;height:56px;border-radius:10px;object-fit:cover}
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <div class="brand" aria-hidden="false">
+        <div class="logo" aria-hidden="true">
+          <img src="data:image/jpeg;base64,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" alt="SSV College Logo" style="width:50px;height:50px;border-radius:8px;">
+        </div>
+        <div>
+          <h1 style="font-size:1rem;margin-bottom:2px">Sri Siddivinayaka College of Nursing</h1>
+          <small class="muted">SSV College of Nursing • Mangaluru</small>
+        </div>
+      </div>
+
+      <div class="menu" role="navigation" aria-label="Primary">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+       
+        <a href="#subjects">Subjects</a>
+        <a href="#gallery">Campus gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="controls">
+        <button id="themeToggle" class="btn small ghost" title="Toggle theme">Theme</button>
+       
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" class="hero container" role="banner">
+    <div class="hero-grid">
+      <div class="hero-left fade-in">
+        <span class="chip">ESTABLISHED • 2006</span>
+        <h2>Where Compassion Meets Clinical Excellence</h2>
+        <p class="lead muted">Sri Siddivinayaka College of Nursing (SSV College of Nursing) — delivering holistic nursing education with strong clinical partnerships, modern labs and community outreach.</p>
+
+        <div class="cta-row">
+          
+          
+        </div>
+
+       
+      </div>
+
+      <aside class="hero-card fade-in" aria-hidden="false">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq345AVt-dzI5ie6bHVhVSlZ7swyl_fYiSbc0qdR7qPM9J9zh5utUcB85jo44QfjDZShbPsglrQf_UsSCBOh7txCUvV-a1JubqE4WtF_a1d0s0sdFCuSJ1vH1Pr1xu-CFXTWPin=s680-w680-h510-rw" alt="Simulation lab">
+        <div class="content">
+          <strong>State-of-the-art Simulation Lab</strong>
+          <p class="muted small" style="margin:8px 0 0">High-fidelity mannequins, OSCE stations and skill labs to train real-world clinical competence.</p>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <!-- ABOUT / ADMISSIONS -->
+  <section id="about" aria-labelledby="aboutTitle">
+    <div class="container">
+      <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap">
+        <div style="flex:1;min-width:280px" class="card fade-in">
+          <h3 id="aboutTitle">About SSV College of Nursing</h3>
+          <p class="muted">Sri Siddhivinayaka College of Nursing (SSV) is affiliated to the State Health Sciences University and approved by INC & State Nursing Council. Our curriculum blends rigorous academics with clinical exposure, research and community engagement.</p>
+          <ul class="muted-sm">
+            <li>Address: 2nd Block, Nexus Mall, Rosario John Paul, Behind Forum, Pandeshwar, Mangaluru, Karnataka 575001</li>
+            <li>Facilities: Computer Lab, Library, Classrooms, Sports & Recreation, Hostel</li>
+          </ul>
+        </div>
+
+        <div style="min-width:300px;flex:0 0 360px" class="card fade-in">
+          <h4>Admissions (2025)</h4>
+          <ul class="muted-sm">
+            <li>B.Sc Nursing (4 years) — 120 seats</li>
+        
+          </ul>
+          <div style="margin-top:10px;display:flex;gap:10px">
+            
+            
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBJECTS -->
+  <section id="subjects" aria-labelledby="subjectsTitle">
+    <div class="container">
+      <h3 id="subjectsTitle" class="center">Subjects & Curriculum</h3>
+      <div class="card" style="margin-top:12px">
+        <table aria-label="Curriculum">
+          <thead>
+            <tr><th>Program</th><th>Year/Sem</th><th>Key Subjects</th><th>Credits</th></tr>
+          </thead>
+          <tbody id="subjectsTable">
+            <!-- JS populates -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+    <!-- FACULTY -->
+    <section id="faculty" aria-labelledby="facultyTitle">
+      <div class="container">
+        <h3 id="facultyTitle" class="center">Faculty</h3>
+        <div class="card" style="margin-top:12px">
+          <table aria-label="Faculty">
+            <thead>
+              <tr><th>Name</th><th>Qualification</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Prof.Geethangali Jerald</td><td>M.Sc Nsg community Health Nsg</td></tr>
+              <tr><td>Mrs.Bhagya H M</td><td>M.Sc Nsg Medical Surgical</td></tr>
+              <tr><td>Mrs Vani B</td><td>M.sc Nsg Paediartic</td></tr>
+              <tr><td>Mrs.Rajmol K</td><td>M.Sc Nsg Medical Surgical</td></tr>
+              <tr><td>Mrs.Renuka K</td><td>M.Sc Nsg OBG</td></tr>
+              <tr><td>Mrs.Sumana Veronica </td><td>M.Sc Psychiatric Nursing</td></tr>
+              <tr><td>Mrs. Arya A R</td><td>B.Sc.Nsg</td></tr>
+              <tr><td>Reshma J</td><td>B.Sc.Nsg</td></tr>
+              <tr><td>Mr.Shubham Namdev Rathod</td><td>B.Sc.Nsg</td></tr>
+              <tr><td>Mr.Sudeep G</td><td>B.Sc.Nsg</td></tr>
+              <tr><td>Mr.Talawar Nilesh Gurappa </td><td>B.Sc.Nsg</td></tr>
+              <tr><td>Shashikumar Halakatti</td><td>B.Sc.Nsg</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+
+  <!-- GALLERY -->
+  <section id="gallery" aria-labelledby="galleryTitle">
+    <div class="container">
+      <h3 id="galleryTitle" class="center">Campus Gallery</h3>
+      <div class="grid-3" style="margin-top:14px">
+        <img class="card" src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrRo-7U5gU0PRa2oj-pmfEtewBmmf2Rt1g8cLtZatAtwzrA_CWbysH4hzrqWV8ULhXBV8kbmRKIp2TAyaF_H3vyAnkjWtAxZ2zDtYOW6cW4tcGiZX6stxPBKX1IT2rtWiIYWTwkCw=s680-w680-h510-rw" alt="Campus building">
+        <img class="card" src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4npu1nthaBw42uQJeRTShy6-LfptPQcUVcVt97622tBAIN1IW7ILe9x3wdCO__-nKVME1cRWjMqF2ZkpJ6F-W4WMD5ESQmoVVl9L1LId7VIZSmLFPlv3PnTs7_F0prmVFuJQdro=s680-w680-h510-rw" alt="Lab">
+        <img class="card" src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr4TdiI9OGKADbZxYHXaUdSUZQAsx6Eujey95-jjJRTXKZpEs1b0Mh4fYF6PzQruA8RcIYMFQC4qgfrBOcPp8R8uUnBs7zTsrsivuKak2EbzbnxBFUchBpj2KwuWQrNJCPvQGs=s680-w680-h510-rw" alt="Lecture hall">
+        <img class="card" src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqNhfNzrz890TfX9Qg-Dz4UBJJkzTEVaDzdTY2qrlmHl1-ajjOVPanv9eFKe3ViMPKA7Q5nF3Sv1DR6pYXzd_7mIBZRHTgdgL7OOh90MId7p1IzbfZ9D9uqKUj__6gw8jzasAk=s680-w680-h510-rw" alt="Campus building">
+        <img class="card" src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqd7DceFTKQHu3puWiybjiYGtsaqLWk2PE895YPQZAF-2Xtf3_mf5ySHiIM_vnIQJrVILGTwfz6PgTzK1F-00AhGr4TRko3bLxqtQbxNsvUtTZ_escACdwpIV8WSBUE3-LkTnYBlg=s680-w680-h510-rw" alt="Campus building">
+        <img class="card" src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq5zaJ8LsB-YfYe1lN4_GAzgNg26kBunfwcpMDAZBATTUZlLoGFV6ZH61-UO3swQFq_GPkjU9DUShvt5uIrci_7coqTpgkwUUAsmmq9wBieFEA7SBXX2YCxMABWJers0emVU7Q=s680-w680-h510-rw" alt="Campus building">
+
+      </div>
+      </div>
+
+      <div style="display:flex;justify-content:center;margin:32px 0;">
+        <div class="card" style="padding:0;height:400px;display:flex;align-items:center;justify-content:center;width:340px;">
+          <iframe src="https://www.instagram.com/reel/Cuzdp9Xg4d7/embed" width="320" height="400" frameborder="0" scrolling="no" allowtransparency="true" allowfullscreen style="border-radius:12px;"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+
+  <!-- CONTACT -->
+  <section id="contact" aria-labelledby="contactTitle">
+    <div class="container">
+      <h3 id="contactTitle">Contact & Info</h3>
+      <div class="grid-3" style="margin-top:12px">
+        <div class="card">
+          <h4>Contact</h4>
+          <p class="muted-sm">Sri Siddhivinayaka College of Nursing (SSV College of Nursing)</p>
+          <p class="muted-sm">Address: 2nd Block, Nexus Mall, Rosario John Paul, Behind Forum, Pandeshwar, Mangaluru, Karnataka 575001</p>
+          <p class="muted-sm">Phone: +91 98765 43210<br>Email: info@ssvcon.edu</p>
+        </div>
+
+        <div class="card">
+          <h4>Facilities</h4>
+          <ul class="muted-sm">
+            <li>Computer Lab</li>
+            <li>Library</li>
+            <li>Modern Classrooms</li>
+            <li>Sports & Recreation</li>
+            <li>Hostel & Mess</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h4>FAQ</h4>
+          <details class="muted-sm"><summary>Hostel available?</summary><div style="margin-top:8px">Yes, separate hostels with warden supervision and mess facilities.</div></details>
+          <details class="muted-sm"><summary>Scholarships?</summary><div style="margin-top:8px">Merit and need-based scholarships are available during admissions.</div></details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <div class="muted-sm">© <span id="year"></span> Sri Siddhivinayaka College of Nursing (SSV College of Nursing)</div>
+         </div>
+  </footer>
+
+  <!-- LOGIN MODAL -->
+  <div id="loginOverlay" class="overlay" aria-hidden="true">
+    <div class="modal modal-sm" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <h4 id="loginTitle">Student Login</h4>
+        <button id="closeLogin" class="btn ghost small">Close</button>
+      </div>
+
+      <form id="loginForm" style="margin-top:12px" autocomplete="off">
+        <input name="email" class="input" type="email" placeholder="Email" required/>
+        <input name="password" class="input" type="password" placeholder="Password (min 6 chars)" minlength="6" required style="margin-top:10px"/>
+        <div style="display:flex;gap:10px;margin-top:12px;align-items:center">
+          <button type="submit" class="btn">Sign In</button>
+          <button id="createAccount" type="button" class="btn ghost">Create Account</button>
+          <div style="margin-left:auto" class="muted-sm">Demo: student@ssvcon.edu / nurse123</div>
+        </div>
+        <div id="loginMsg" class="muted-sm" style="margin-top:10px"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- VIEW APPLICATIONS MODAL -->
+  <div id="appsOverlay" class="overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="appsTitle">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <h4 id="appsTitle">Saved Applications</h4>
+        <div style="display:flex;gap:8px">
+          <button id="deleteAll" class="btn ghost small">Delete All</button>
+          <button id="closeApps" class="btn small">Close</button>
+        </div>
+      </div>
+      <div id="appsList" style="margin-top:12px;max-height:60vh;overflow:auto"></div>
+    </div>
+  </div>
+
+  <!-- TO TOP -->
+  <button id="toTop" class="btn small" title="Back to top" style="position:fixed;right:18px;bottom:18px;display:none">↑</button>
+
+  <script>
+    // -------------------------
+    // Utilities
+    // -------------------------
+    const $ = s => document.querySelector(s);
+    const $$ = s => Array.from(document.querySelectorAll(s));
+    const ready = fn => document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', fn) : fn();
+
+    ready(()=>{
+      // set year
+      $('#year').textContent = new Date().getFullYear();
+
+      /* ===== Scroll spy: highlight menu links ===== */
+      const sections = ['home','about','events','subjects','faculty','gallery','apply','contact'];
+      const links = sections.map(id => ({id, el: document.querySelector(`.menu a[href="#${id}"]`)}));
+      const observer = new IntersectionObserver(entries=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            links.forEach(l => {
+              if(l.el) l.el.classList.toggle('active', `#${e.target.id}` === l.el.getAttribute('href'));
+            });
+          }
+        });
+      }, {threshold: .45});
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if(el) observer.observe(el);
+      });
+
+      /* ===== Back to top ===== */
+      const toTop = $('#toTop');
+      window.addEventListener('scroll', ()=>{ toTop.style.display = window.scrollY>600 ? 'block' : 'none'; });
+      toTop.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}) );
+
+      /* ===== Theme toggle (simple) ===== */
+      const themeToggle = $('#themeToggle');
+      let light = false;
+      themeToggle?.addEventListener('click', ()=>{
+        light = !light;
+        if(light){
+          document.documentElement.style.setProperty('--bg','#f4f7fb');
+          document.documentElement.style.setProperty('--text','#082034');
+          document.documentElement.style.setProperty('--card','#ffffff');
+        } else {
+          document.documentElement.style.setProperty('--bg','#071028');
+          document.documentElement.style.setProperty('--text','#eaf4ff');
+          document.documentElement.style.setProperty('--card','#0f1a2b');
+        }
+      });
+
+     
+      /* ===== Subjects table ===== */
+      const subjects = [
+        {prog:'B.Sc Nursing', year:'Year 1<br> SEM 1:', subjects:'Communicative English<br>Applied Anatomy<br>Applied Physiology<br>Applied Psychology<br>Nursing Foundation 1 including First Aid module<br>Self-study/Co-curricular', credits:24},
+        {prog:'B.Sc Nursing', year:'<br>SEM 2:', subjects:'Applied Biochemistry<br>Applied Nutrition and dietics<br>Nursing Foundation2 including Health Assessment module<br>Health/Nursing Informatics & Technology<br>Self-study/Co-curricular', credits:21},
+        {prog:'B.Sc Nursing', year:'Year 2<br>SEM 3:', subjects:'Applied Microbiology and Infection Control including Safety<br>Pharmacology 1<br>Pathology 1<br>Adult Health Nursing with integrated pathophysiology including BCLS module<br>Self-study/co-curricular', credits:19},
+        {prog:'B.Sc Nursing', year:'SEM 4', subjects:'Pharmacology II including Fundamentals of prescribing module<br>Pathology II and Genetics<br>Adult Health Nursing II with integrated pathophysiology including Geriatric Nursing + Palliative care module<br>Professionalism, Professional Values and Ethics including bioethics<br>Self-study/Co-curricular', credits:19},
+        {prog:'B.Sc Nursing', year:'Year 3<br> SEM 5:', subjects:'Child Health Nursing I including Essential Newborn Care (ENBC), FBNC, IMNCI and PLS, modules<br>Mental Health Nursing I<br>Community Health Nursing I including Environmental Science & Epidemiology<br>Educational Technology/Nursing Education<br>Introduction to Forensic Nursing and Indian laws<br>Self-study/Co-curricular', credits:21},
+        {prog:'B.Sc Nursing', year:'<br>SEM 6:', subjects:'Child Health Nursing II<br>Mental Health Nursing II<br>Nursing Management & Leadership<br>Midwifery/Obstetrics andGynaecology (OBG) Nursing I including SBA module<br>Self-study/Co-curricular', credits:18},
+        {prog:'B.Sc Nursing', year:'Year 4<br> SEM 7:', subjects:'Community Health Nursing II<br>Nursing Research & Statistics<br>Midwifery/Obstetrics and Gynaecology (OBG) Nursing II including Safe delivery app module<br>Self-study/Co-curricular', credits:19},
+        {prog:'B.Sc Nursing', year:'<br>SEM 8:', subjects:'Community Health Nursing-4 weeks<br>Adult Health Nursing-6 weeks<br>Child Health Nursing - 4 weeks<br>Mental Health Nursing - 4 weeks<br>Midwifery -4 weeks<br>', credits:12},
+     
+             ];
+      $('#subjectsTable').innerHTML = subjects.map(s=>`<tr><td>${s.prog}</td><td>${s.year}</td><td>${s.subjects}</td><td>${s.credits}</td></tr>`).join('');
+
+      
+      /* ===== Apply form dynamic selects + localStorage saving ===== */
+      const countryEl = $('#country'), stateEl = $('#state'), cityEl = $('#city');
+      const states = {
+        'India':['Karnataka','Maharashtra','Kerala','Tamil Nadu','Other'],
+        'Other':['Other State']
+      };
+      const cities = {
+        'Karnataka':['Mangaluru','Bengaluru','Mysuru'],
+        'Maharashtra':['Mumbai','Pune','Nagpur'],
+        'Kerala':['Kochi','Trivandrum'],
+        'Tamil Nadu':['Chennai','Coimbatore'],
+        'Other':['Other City'],
+        'Other State':['Other City']
+      };
+      countryEl.addEventListener('change', ()=>{
+        const v = countryEl.value;
+        stateEl.innerHTML = `<option value="">Select State *</option>` + (states[v]||[]).map(s=>`<option>${s}</option>`).join('');
+        cityEl.innerHTML = `<option value="">Select City *</option>`;
+      });
+      stateEl.addEventListener('change', ()=>{
+        const s = stateEl.value;
+        cityEl.innerHTML = `<option value="">Select City *</option>` + (cities[s]||[]).map(c=>`<option>${c}</option>`).join('');
+      });
+
+      const APP_KEY = 'ssv_applications_v1';
+      const updateAppCount = ()=> {
+        const apps = JSON.parse(localStorage.getItem(APP_KEY) || '[]');
+        $('#appCount').textContent = apps.length;
+      };
+      updateAppCount();
+
+      $('#applyForm').addEventListener('submit', e=>{
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(e.target).entries());
+        // simple front-end validation
+        if(!data.fullname || !data.email || !data.phone || !data.course || !data.country || !data.state || !data.city){
+          $('#applyMsg').textContent = 'Please fill all required fields.';
+          return;
+        }
+        // save
+        const apps = JSON.parse(localStorage.getItem(APP_KEY) || '[]');
+        apps.push({...data, submittedAt: new Date().toISOString()});
+        localStorage.setItem(APP_KEY, JSON.stringify(apps));
+        $('#applyMsg').textContent = 'Application submitted. We will contact you soon.';
+        e.target.reset();
+        updateAppCount();
+      });
+
+      // View saved applications
+      $('#viewApps').addEventListener('click', ()=>{
+        const apps = JSON.parse(localStorage.getItem(APP_KEY) || '[]');
+        const wrap = $('#appsList');
+        if(!apps.length){
+          wrap.innerHTML = '<div class="muted-sm">No saved applications.</div>';
+        } else {
+          wrap.innerHTML = apps.map((a, idx)=>`
+            <div class="card" style="margin-bottom:10px">
+              <div style="display:flex;justify-content:space-between;gap:12px">
+                <div>
+                  <strong>${a.fullname}</strong> <div class="muted small">${a.email} • ${a.phone}</div>
+                  <div class="muted small" style="margin-top:6px">${a.course} • ${a.city}, ${a.state}, ${a.country}</div>
+                </div>
+                <div class="muted small" style="text-align:right">
+                  ${new Date(a.submittedAt).toLocaleString()}<br>
+                  <button class="btn ghost small" data-index="${idx}" onclick="deleteApp(event)">Delete</button>
+                </div>
+              </div>
+            </div>
+          `).join('');
+        }
+        $('#appsOverlay').classList.add('show');
+      });
+
+      // Delete single app (global function for inline onclick)
+      window.deleteApp = function(evt){
+        const idx = Number(evt.currentTarget.getAttribute('data-index'));
+        const apps = JSON.parse(localStorage.getItem(APP_KEY) || '[]');
+        apps.splice(idx,1);
+        localStorage.setItem(APP_KEY, JSON.stringify(apps));
+        $('#viewApps').click(); // refresh
+        updateAppCount();
+      };
+
+      $('#closeApps').addEventListener('click', ()=> $('#appsOverlay').classList.remove('show'));
+      $('#deleteAll').addEventListener('click', ()=>{
+        if(confirm('Delete all saved applications?')){
+          localStorage.removeItem(APP_KEY);
+          $('#appsList').innerHTML = '<div class="muted-sm">No saved applications.</div>';
+          updateAppCount();
+        }
+      });
+
+      /* ===== Login modal behavior (demo auth) ===== */
+      const loginOverlay = $('#loginOverlay');
+      $('#loginBtn').addEventListener('click', ()=> loginOverlay.classList.add('show'));
+      $('#closeLogin').addEventListener('click', ()=> loginOverlay.classList.remove('show'));
+      $('#loginForm').addEventListener('submit', e=>{
+        e.preventDefault();
+        const fm = new FormData(e.target);
+        const email = fm.get('email').trim();
+        const pass = fm.get('password').trim();
+        if(!email || pass.length < 6){ $('#loginMsg').textContent = 'Enter valid credentials (min 6 chars).'; return; }
+        // demo: accept any credentials
+        localStorage.setItem('ssv_user', JSON.stringify({email}));
+        $('#loginMsg').textContent = 'Login successful (demo)';
+        setTimeout(()=> loginOverlay.classList.remove('show'),700);
+      });
+      $('#createAccount').addEventListener('click', ()=>{
+        const fm = new FormData($('#loginForm'));
+        const email = fm.get('email') || '';
+        if(!email){ $('#loginMsg').textContent = 'Please enter email to create account (demo).'; return; }
+        localStorage.setItem('ssv_user', JSON.stringify({email}));
+        $('#loginMsg').textContent = 'Account created locally (demo).';
+        setTimeout(()=> loginOverlay.classList.remove('show'),700);
+      });
+
+      // Apps overlay close by clicking outside
+      $$('#appsOverlay, #loginOverlay').forEach(el=>{
+        el.addEventListener('click', ev => { if(ev.target === el) el.classList.remove('show'); });
+      });
+
+      // Prospectus (generate small PDF-like print view)
+      $('#downloadProspectus').addEventListener('click', ()=>{
+        const content = `
+          <div style="font-family:Inter,Arial;padding:24px;color:#072034">
+            <h1>Sri Siddhivinayaka College of Nursing (SSv)</h1>
+            <p>Address: 2nd Block, Nexus Mall, Rosario John Paul, Behind Forum, Pandeshwar, Mangaluru, Karnataka 575001</p>
+            <h3>Programs</h3>
+            <ul>
+              <li>B.Sc Nursing (4 years)</li>
+              <li>GNM (3 years)</li>
+              <li>M.Sc Nursing (2 years)</li>
+            </ul>
+            <h3>Facilities</h3>
+            <ul>
+              <li>Computer Lab, Library, Classrooms, Sports</li>
+            </ul>
+            <p>Contact: info@ssvcon.edu • +91 98765 43210</p>
+          </div>
+        `;
+        const w = window.open('','_blank','width=800,height=900');
+        w.document.write(content);
+        w.document.close();
+        w.print();
+      });
+
+      // Reveal on scroll simple effect
+      const faders = $$('.fade-in');
+      const appearOnScroll = new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            entry.target.style.animationDelay = '0.06s';
+            entry.target.style.animationFillMode = 'forwards';
+            entry.target.style.animation = 'fadeIn .6s ease-out forwards';
+            appearOnScroll.unobserve(entry.target);
+          }
+        });
+      }, {threshold:0.15});
+      faders.forEach(f=> appearOnScroll.observe(f));
+
+      /* ===== Misc: tour button opens gallery modal (quick) ===== */
+      $('#tourBtn').addEventListener('click', ()=>{
+        const images = [
+          'https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=1400&auto=format&fit=crop',
+          'https://images.unsplash.com/photo-1504439904031-93ded9f93fef?q=80&w=1400&auto=format&fit=crop',
+          'https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?q=80&w=1400&auto=format&fit=crop'
+        ];
+        const html = images.map(u=>`<img src="${u}" style="width:100%;margin-bottom:10px;border-radius:8px"/>`).join('');
+        const w = window.open('','_blank','width=900,height=700');
+        w.document.write(`<title>Virtual Tour - SSv College</title><body style="font-family:Inter,Arial;padding:18px">${html}</body>`);
+        w.document.close();
+      });
+
+    }); // ready
+  </script>
+  <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+
+
+</body>
+</html>
